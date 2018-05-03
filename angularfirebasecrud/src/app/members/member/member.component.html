@@ -1,0 +1,37 @@
+<form #memberForm="ngForm" (ngSubmit)="onSubmit(memberForm)">
+  <input type="hidden" name="$memberId" #$memberId="ngModel" [(ngModel)]="memberService.selectedMember.$memberId">
+  <input type="hidden" name="createdOn" #createdOn="ngModel" [(ngModel)]="memberService.selectedMember.createdOn">
+  <input type="hidden" name="createdBy" #createdBy="ngModel" [(ngModel)]="memberService.selectedMember.createdBy">
+  <input type="hidden" name="isActive" #isActive="ngModel" [(ngModel)]="memberService.selectedMember.isActive">
+  <input type="hidden" name="displayOrder" #displayOrder="ngModel" [(ngModel)]="memberService.selectedMember.displayOrder">
+
+  <div class="form-group">
+    <label>Name</label>
+    <input class="form-control" name="memberName" #name="ngModel" [(ngModel)]="memberService.selectedMember.memberName" placeholder="Full Name" required>
+  </div>
+  <div class="form-group">
+    <label>Mobile 1</label>
+    <input class="form-control" name="mobile1" #position="ngModel" [(ngModel)]="memberService.selectedMember.mobile1" placeholder="First mobile number">
+  </div>
+  <div class="form-group">
+    <label>Mobile 2</label>
+    <input class="form-control" name="mobile2" #office="ngModel" [(ngModel)]="memberService.selectedMember.mobile2" placeholder="Second Mobile Number">
+  </div>
+  <div class="form-group">
+      <label>Remarks</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-dollar"></i>
+      </div>
+      <input class="form-control" name="remarks" #salary="ngModel" [(ngModel)]="memberService.selectedMember.remarks" placeholder="Remarks">
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-default" [disabled]="!memberForm.valid">
+     <i class="fa fa-floppy-o"></i> Submit</button> 
+    <button type="button" class="btn btn-default" *ngIf="memberService.selectedMember.$memberId!=null" (click)="onDelete(memberForm)">
+        <i class="fa fa-trash"></i> Delete</button>
+    <button type="button" class="btn btn-default" (click)="resetForm(memberForm)">
+        <i class="fa fa-repeat"></i> Reset</button>
+  </div>
+</form>
